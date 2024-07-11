@@ -1,0 +1,44 @@
+{% extends 'polls/base.html' %}
+{% block content %}
+{% load static %}
+    <div class="row">
+        <div class="col my-3">
+            <h1 class="text-primary">POLLS</h1>
+        </div>
+    </div>
+    <!-- Поле вводу для пошуку -->
+    <div class="row mb-3">
+        <div class="col">
+            <input type="text" id="searchInput" placeholder="Search polls by title..." class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-1">
+            <h4>Всього: <span class="badge text-bg-primary">{{page_obj.paginator.count}}</span></h4>
+        </div>
+    </div>
+    <div class="row text-left poll-container">
+        {% include 'polls/list.html' %}
+    </div>
+    {# Paginations #}
+    <div class="row mt-5 justify-content-center">
+        <div class="col-2">
+            <nav aria-label="...">
+                <ul class="pagination pagination-lg">
+                    {% for page_num in page_obj.paginator.page_range %}
+                    <li class="page-item {% if page_obj.number == page_num %}active{% endif %}" aria-current="page">
+                        <a class="page-link" href="?page={{ page_num }}" class="display: inline-block">{{ page_num }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-1">
+            <button id="show-more" class="btn btn-primary btn-lg mt-2 mb-4" onclick="showMore()">Ще</button>
+        </div>
+    </div>
+    <input type="hidden" id="page-cur" value="{{page_obj.number}}">
+    <input type="hidden" id="page-num" value="{{page_obj.paginator.num_pages}}">
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'polls/base.html' %}
+{% block content %}
+{% load static %}
+    <div class="row">
+        <div class="col mt-3">
+            <h2><span class="badge text-bg-light border">POLL</span> <span class="badge text-bg-light border">{{ poll.title }}</span></h2>
+        </div>
+    </div>
+    <div class="row text-left">
+        <div class="col">
+            <div class="card px-3">
+                <img src="{% static 'images/image.png' %}" class="card-img-top " alt="..." style="max-width: 400px;">
+                <div class="card-body">
+                    <h3 class="card-title">{{ poll.title }}</h3>
+                    <p>
+                        {% if poll.is_active %}
+                        <span class="badge text-bg-success fs-5">Active</span>
+                        {% else %}
+                        <span class="badge text-bg-secondary fs-5">Inactive</span>
+                        {% endif %}
+                    </p>
+                    <p class="card-text">{{ poll.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

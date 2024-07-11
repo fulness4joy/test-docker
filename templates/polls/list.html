@@ -1,0 +1,13 @@
+{% load static %}
+{% for poll in page_obj %}
+<div class="col-lg-4 col-md-6 p-3">
+    <div class="card px-3">
+        <img src="{% static 'images/image.png' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h3 class="card-title">{{ poll.title }}</h3>
+            <p class="card-text">{{ poll.description|slice:":130" }} {% if poll.description|length > 130 %}...{% endif %}</p>
+            <a href="{% url 'poll-detail' poll.pk %}" class="btn btn-primary">Переглянути</a>
+        </div>
+    </div>
+</div>
+{% endfor %}

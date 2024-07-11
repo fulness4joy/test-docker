@@ -1,0 +1,10 @@
+{% extends "polls/base.html" %}
+{% block content %}
+<form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
+----
+{{form.username.name}} {{form.username.id_for_label}} {{form.username.value}}
+{% endblock %} {% block title %} Register {% endblock %}

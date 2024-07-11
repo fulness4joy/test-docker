@@ -1,0 +1,4 @@
+body {
+    background-color:rgb(249, 249, 179);
+    transition: background-color 0.7s;
+}
